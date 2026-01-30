@@ -22,7 +22,7 @@ type OrderRequest struct {
 	Instructions []string `form:"instructions" binding:"required, min=2, max=100"`
 }
 
-func (h *Handler) ServeNewOrderPost(c *gin.Context) {
+func (h *Handler) ServeNewOrder(c *gin.Context) {
 	c.HTML(http.StatusOK, "order.tmpl", OrderFormData{
 		PizzaTypes: models.PizzaTypes,
 		PizzaSizes: models.PizzaSizes,
@@ -65,7 +65,7 @@ func (h *Handler) HandleNewOrderPost(c *gin.Context) {
 	c.Redirect(http.StatusSeeOther, "/customer/"+order.ID)
 }
 
-func (h *Handler) ServeCustomerOrder(c *gin.Context) {
+func (h *Handler) ServeCustomer(c *gin.Context) {
 	id := c.Param("id")
 	if id == "" {
 		c.String(http.StatusBadRequest, "Order ID is required")
